@@ -115,9 +115,10 @@ require 'vendor/autoload.php';
 // $test->write();
 // $test->read();
 
-$lecture = new \App\Principles\Lecture(5, \App\Principles\Lesson::FIXED);
+$lessons[] = new \App\Principles\Lecture(5, new \App\Principles\FixedCostStrategy());
+$lessons[] = new \App\Principles\Seminar(3, new \App\Principles\TimedCostStrategy());
 
-echo nl2br("{$lecture->cost()} ({$lecture->chargeType()}) \n");
-
-$seminar = new \App\Principles\Seminar(3, \App\Principles\Lesson::TIMED);
-echo nl2br("{$seminar->cost()} ({$seminar->chargeType()}) \n");
+foreach ($lessons as $lesson) {
+    echo nl2br("lesson charge {$lesson->cost()} ");
+    echo nl2br("Charge type: {$lesson->chargeType()} \n");
+}
