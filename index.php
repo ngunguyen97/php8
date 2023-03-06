@@ -115,10 +115,33 @@ require 'vendor/autoload.php';
 // $test->write();
 // $test->read();
 
-$lessons[] = new \App\Principles\Lecture(5, new \App\Principles\FixedCostStrategy());
-$lessons[] = new \App\Principles\Seminar(3, new \App\Principles\TimedCostStrategy());
+// $lessons[] = new \App\Principles\Lecture(5, new \App\Principles\FixedCostStrategy());
+// $lessons[] = new \App\Principles\Seminar(3, new \App\Principles\TimedCostStrategy());
+//
+// foreach ($lessons as $lesson) {
+//    echo nl2br("lesson charge {$lesson->cost()} ");
+//    echo nl2br("Charge type: {$lesson->chargeType()} \n");
+// }
 
-foreach ($lessons as $lesson) {
-    echo nl2br("lesson charge {$lesson->cost()} ");
-    echo nl2br("Charge type: {$lesson->chargeType()} \n");
-}
+// listing 09.04
+
+// $boss = new \App\GeneratingObjects\NastyBoss();
+// $boss->addEmployee(new \App\GeneratingObjects\Minion('harry'));
+// $boss->addEmployee(new \App\GeneratingObjects\CluedUp('bob'));
+// $boss->addEmployee(new \App\GeneratingObjects\Minion('mary'));
+// $boss->projectFail();
+// $boss->projectFail();
+// $boss->projectFail();
+//
+// $pref = \App\GeneratingObjects\Preferences::getInstance();
+// $pref->setProperty('name', 'matt');
+//
+// unset($pref);
+//
+// $pref2 = \App\GeneratingObjects\Preferences::getInstance();
+// echo nl2br($pref2->getProperty('name'));
+
+$manager = new \App\GeneratingObjects\MegaCommsManager();
+echo nl2br($manager->getHeaderText());
+echo nl2br($manager->getApptEncoder()->encode());
+echo nl2br($manager->getFooterText());
