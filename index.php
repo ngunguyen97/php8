@@ -141,7 +141,28 @@ require 'vendor/autoload.php';
 // $pref2 = \App\GeneratingObjects\Preferences::getInstance();
 // echo nl2br($pref2->getProperty('name'));
 
-$manager = new \App\GeneratingObjects\MegaCommsManager();
-echo nl2br($manager->getHeaderText());
-echo nl2br($manager->getApptEncoder()->encode());
-echo nl2br($manager->getFooterText());
+// $manager = new \App\GeneratingObjects\MegaCommsManager();
+// echo nl2br($manager->getHeaderText());
+// echo nl2br($manager->getApptEncoder()->encode());
+// echo nl2br($manager->getFooterText());
+
+// $commsMgr = \App\GeneratingObjects\AppConfig::getInstance()->getCommsManager();
+// echo $commsMgr->getApptEncoder()->encode();
+$main_army = new \App\Patterns\Composite\Army();
+
+// add some units
+try {
+    $main_army->addUnit(new \App\Patterns\Composite\Archer());
+
+    $sub_army = new \App\Patterns\Composite\Army();
+    $sub_army->addUnit(new \App\Patterns\Composite\Archer());
+    $sub_army->addUnit(new \App\Patterns\Composite\Archer());
+    $sub_army->addUnit(new \App\Patterns\Composite\Archer());
+
+    // add the second army to the first
+    $main_army->addUnit($sub_army);
+    echo nl2br("attacking with strength: {$main_army->bombardStrength()}");
+
+} catch (\App\Patterns\Composite\UnitException $e) {
+    echo $e->getMessage();
+}
