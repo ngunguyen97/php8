@@ -148,21 +148,32 @@ require 'vendor/autoload.php';
 
 // $commsMgr = \App\GeneratingObjects\AppConfig::getInstance()->getCommsManager();
 // echo $commsMgr->getApptEncoder()->encode();
-$main_army = new \App\Patterns\Composite\Army();
+// $main_army = new \App\Patterns\Composite\Army();
+//
+// // add some units
+// try {
+//    $main_army->addUnit(new \App\Patterns\Composite\Archer());
+//
+//    $sub_army = new \App\Patterns\Composite\Army();
+//    $sub_army->addUnit(new \App\Patterns\Composite\Archer());
+//    $sub_army->addUnit(new \App\Patterns\Composite\Archer());
+//    $sub_army->addUnit(new \App\Patterns\Composite\Archer());
+//
+//    // add the second army to the first
+//    $main_army->addUnit($sub_army);
+//    echo nl2br("attacking with strength: {$main_army->bombardStrength()}");
+//
+// } catch (\App\Patterns\Composite\UnitException $e) {
+//    echo $e->getMessage();
+// }
 
-// add some units
-try {
-    $main_army->addUnit(new \App\Patterns\Composite\Archer());
+// $tile = new \App\Patterns\Decorator\DiamondDecorator(new \App\Patterns\Decorator\Plains());
+// echo nl2br($tile->getWealthFactor()."\n");
 
-    $sub_army = new \App\Patterns\Composite\Army();
-    $sub_army->addUnit(new \App\Patterns\Composite\Archer());
-    $sub_army->addUnit(new \App\Patterns\Composite\Archer());
-    $sub_army->addUnit(new \App\Patterns\Composite\Archer());
+$tile = new \App\Patterns\Decorator\PollutionDecorator(
+    new \App\Patterns\Decorator\DiamondDecorator(
+        new \App\Patterns\Decorator\Plains()
+    )
+);
 
-    // add the second army to the first
-    $main_army->addUnit($sub_army);
-    echo nl2br("attacking with strength: {$main_army->bombardStrength()}");
-
-} catch (\App\Patterns\Composite\UnitException $e) {
-    echo $e->getMessage();
-}
+echo nl2br($tile->getWealthFactor()."\n");
